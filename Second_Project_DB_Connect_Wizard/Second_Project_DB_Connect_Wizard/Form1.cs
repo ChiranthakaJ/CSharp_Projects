@@ -53,8 +53,6 @@ namespace First_Project_DB_App_Config
         private void btnShow_Click(object sender, EventArgs e)
         {
 
-            ConnectionString = "Data Source=CHIRAN-PC;Initial Catalog=FirstDatabaseProject;Integrated Security=True";
-
         try
             {
                 SqlConn = new SqlConnection(ConnectionString);
@@ -82,7 +80,7 @@ namespace First_Project_DB_App_Config
 
         private void frmDBConnectionForm_Load(object sender, EventArgs e)
         {
-
+            ConnectionString = "Data Source=CHIRAN-PC;Initial Catalog=FirstDatabaseProject;Integrated Security=True";
         }
     }
 }
