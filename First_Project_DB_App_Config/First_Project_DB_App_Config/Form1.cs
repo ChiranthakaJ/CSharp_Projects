@@ -7,11 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
+using System.Data.SqlClient;
 
 namespace First_Project_DB_App_Config
 {
     public partial class frmDBConnectionForm : Form
     {
+        SqlConnection SqlConn;
+        SqlDataReader SqlDr;
+        SqlCommand SqlCommand;
+
         public frmDBConnectionForm()
         {
             InitializeComponent();
@@ -40,6 +46,37 @@ namespace First_Project_DB_App_Config
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnShow_Click(object sender, EventArgs e)
+        {
+            ConnectionStringSettings conStrSettings = ConfigurationManager.ConnectionStrings["MyDBConnection"];
+
+            string connectionString = conStrSettings.ConnectionString;
+
+            try
+            {
+                SqlConn = new SqlConnection(connectionString);
+                SqlConn.Open();
+                SqlCommand = new SqlCommand("SELECT * FROM PersonalDetails", SqlConn);
+                SqlDr = SqlCommand.ExecuteReader();
+
+                while (SqlDr.Read())
+                {
+                    lbIndexNo.Items.Add(SqlDr[0].ToString());
+                    lbFirstName.Items.Add(SqlDr[1].ToString());
+                    lbLastName.Items.Add(SqlDr[2].ToString());
+                    lbAddress.Items.Add(SqlDr[3].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                SqlConn.Close();
+            }
         }
     }
 }

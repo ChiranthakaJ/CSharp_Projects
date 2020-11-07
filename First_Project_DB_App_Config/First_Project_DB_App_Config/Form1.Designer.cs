@@ -133,6 +133,7 @@
             this.btnShow.TabIndex = 9;
             this.btnShow.Text = "Show!";
             this.btnShow.UseVisualStyleBackColor = true;
+            this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
             // frmDBConnectionForm
             // 
@@ -149,7 +150,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "frmDBConnectionForm";
-            this.Text = "DB Connection Form";
+            this.Text = " ";
             this.ResumeLayout(false);
             this.PerformLayout();
 
